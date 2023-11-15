@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: fabio
+Build-Jdk: 17.0.8.1
+Implementation-Title: eicon
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.fabio
+Implementation-URL: http://projects.spring.io/spring-boot/spring-boot-st
+ arter-parent/eicon/
+Created-By: Maven Integration for Eclipse
+
