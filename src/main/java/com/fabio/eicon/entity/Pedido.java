@@ -1,12 +1,18 @@
 package com.fabio.eicon.entity;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
-import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Pedido {
@@ -29,15 +35,33 @@ public class Pedido {
 	private Double valor;
 	
 	@Column(name="valor_total")
-	private Double valortotal;
+	private Double valorTotal;
 	
 	@Column(name="qtd_produto")
 	private Integer qtdProduto;
 	
-	@Column(name="codigo_cliente")
-	@OneToMany
-	private Set<Cliente> usuario;
+	@JoinColumn(name="codigo_cliente_pedido")
+	@JsonProperty("codigoClientePedido")
+    @ManyToOne(cascade=CascadeType.PERSIST)
+	private Cliente cliente;
 
+//	public Pedido(
+//			Integer numeroControle,
+//			Date dtCadastro,
+//			String nomeProduto,
+//			Double valor,
+//			Double valorTotal,
+//			Integer qtdProduto,
+//			Cliente cliente) {
+//        this.numeroControle = numeroControle;
+//        this.dtCadastro = dtCadastro;
+//        this.nomeProduto = nomeProduto;
+//        this.valor = valor;
+//        this.valorTotal = valorTotal;
+//        this.qtdProduto = qtdProduto;
+//        this.cliente = cliente;
+//    }
+	
 	public Long getId() {
 		return id;
 	}
@@ -79,11 +103,11 @@ public class Pedido {
 	}
 
 	public Double getValortotal() {
-		return valortotal;
+		return valorTotal;
 	}
 
 	public void setValortotal(Double valortotal) {
-		this.valortotal = valortotal;
+		this.valorTotal = valortotal;
 	}
 
 	public Integer getQtdProduto() {
@@ -94,13 +118,12 @@ public class Pedido {
 		this.qtdProduto = qtdProduto;
 	}
 
-	public Set<Cliente> getUsuario() {
-		return usuario;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setUsuario(Set<Cliente> usuario) {
-		this.usuario = usuario;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
-	
 	
 }
