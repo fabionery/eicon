@@ -33,18 +33,13 @@ public class PedidoController {
 	private PedidoService service;
 	
 	@GetMapping
-	public List<Pedido> getPedido(
-			@RequestParam(value = "numeroControle", required = false)Integer numeroControle,
-			@RequestParam(value = "dtCadastro", required = false)Date dtCadastro) {
-		if (numeroControle == null && dtCadastro == null) {
-			return pedidoRepository.findAll();
-		} else if (numeroControle != null && dtCadastro == null) {
-			return pedidoRepository.findByNumeroControle(numeroControle);
-		} else if (numeroControle == null && dtCadastro != null) {
-			return pedidoRepository.findByDtCadastro(dtCadastro);
-		} else {
-			return pedidoRepository.findByNumeroControleAndDtCadastro(numeroControle, dtCadastro);
-		}
+	public ResponseEntity<List<Pedido>> getPedido(
+			@RequestParam(value = "numeroControle", required = false, defaultValue = "")Integer numeroControle,
+			@RequestParam(value = "dtCadastro", required = false, defaultValue = "")Date dtCadastro) throws Exception {
+		
+		List<Pedido> result = service.pesquisar(numeroControle, dtCadastro);
+		
+		return new ResponseEntity<List<Pedido>>(result, HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "pesquisa")
