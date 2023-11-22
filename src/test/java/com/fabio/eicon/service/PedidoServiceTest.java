@@ -2,8 +2,6 @@ package com.fabio.eicon.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.anyDouble;
@@ -22,7 +20,6 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fabio.eicon.dto.PedidoDTO;
-import com.fabio.eicon.entity.Pedido;
 
 public class PedidoServiceTest {
 	
@@ -52,7 +49,7 @@ public class PedidoServiceTest {
 		data = new Date(30);
 		numeroControle = 1;
 		pedidoDTO = new PedidoDTO(
-				1, data, anyString(), anyDouble(), anyDouble(), anyInt(), anyInt()
+				anyInt(), data, anyString(), anyDouble(), anyDouble(), anyInt(), anyInt()
 				);
 	}
 
