@@ -26,6 +26,17 @@ public class PedidoDTO implements Serializable{
 	
 	private Integer codigoCliente;
 
+	public PedidoDTO(int numeroControle, Date dtCadastro, String nomeProduto, double valor, double valorTotal, int qtdProduto,
+			int codigoCliente) {
+		this.numeroControle = numeroControle;
+	    this.dtCadastro = dtCadastro;
+	    this.nomeProduto = nomeProduto;
+	    this.valor = valor;
+	    this.valortotal = valorTotal;
+	    this.qtdProduto = qtdProduto;
+	    this.codigoCliente = codigoCliente;
+	}
+
 	public void pedidoDTO(Pedido pedido) {
 		this.numeroControle = pedido.getNumeroControle();
 	    this.dtCadastro = pedido.getDtCadastro();

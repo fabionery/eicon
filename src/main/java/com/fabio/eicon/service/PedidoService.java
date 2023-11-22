@@ -60,13 +60,13 @@ public class PedidoService {
 			repository.saveAll(result);
 			return result;
 		} catch (Exception e) {
-			throw new Exception("erro ao salvar pedido", e);
+			throw new Exception("erro ao salvar pedido!", e);
 		}
 		
 		
 	}
 
-	private Pedido convertDTO(PedidoDTO pedido) throws Exception {
+	public Pedido convertDTO(PedidoDTO pedido) throws Exception {
 		Assert.notNull(pedido, "pedido convert não pode ser null");
 		try {
 			Pedido itemPedido = new Pedido();
@@ -80,11 +80,11 @@ public class PedidoService {
 			itemPedido.setCliente(cliente);
 			return itemPedido;
 		} catch (Exception e) {
-			 throw new Exception("erro ao converter objeto", e);
+			 throw new Exception("erro ao converter objeto!", e);
 		}
 	}
 
-	private void calculoProduto(PedidoDTO pedido) throws Exception {
+	public void calculoProduto(PedidoDTO pedido) throws Exception {
 		Assert.notNull(pedido, "pedido calculo não pode ser null");
 		try {
 			if (pedido.getQtdProduto() == null) {
@@ -105,7 +105,7 @@ public class PedidoService {
 		}
 	}
 
-	private void verificaData(PedidoDTO pedido) throws Exception {
+	public void verificaData(PedidoDTO pedido) throws Exception {
 		Assert.notNull(pedido, "data não pode ser null");
 		try {
 			if(pedido.getDtCadastro() == null) {
@@ -119,7 +119,7 @@ public class PedidoService {
 		}
 	}
 
-	private void verificaSeExisteControle(PedidoDTO pedido) throws Exception {
+	public void verificaSeExisteControle(PedidoDTO pedido) throws Exception {
 		List<Pedido> optPedido = repository.findByNumeroControle(pedido.getNumeroControle());
 		if(!optPedido.isEmpty()) {
 			throw new Exception("Número de pedido já está cadastrado");
